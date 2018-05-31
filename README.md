@@ -1,13 +1,15 @@
 # Using Own Database Sequences
 
-1. Create a subclass of `NumberIdWorker` bean in the `core` module and override the `getSequenceName()` method like this:
+1. Create a subclass of `NumberIdWorker` bean in the `core` module and override the `getSequenceName()` method
+to return a sequence declared by [the ```@IdSequence``` annotation](https://github.com/aleksey-stukalov/own-sequence/blob/master/modules/global/src/com/company/sample/annotation/IdSequence.java):
 
     ```java
     @Override
     protected String getSequenceName(String entityName) {
-        if (entityName.equals("sample$Foo")) {
-            return "FOO_SEQ"; // an existing sequence
-        }
+        Class<?> entityClass = AppBeans.get(Metadata.class).getSession().getClass(entityName).getJavaClass();
+        if (entityClass != null && entityClass.isAnnotationPresent(IdSequence.class))
+            return entityClass.getAnnotation(IdSequence.class).name();
+
         return super.getSequenceName(entityName);
     }
     ```
