@@ -11,7 +11,7 @@
         return super.getSequenceName(entityName);
     }
     ```
-    See an example in `SampleNumberIdWorker.java`.        
+    See an example in [SampleNumberIdWorker.java](https://github.com/cuba-labs/own-sequence/blob/master/modules/core/src/com/company/sample/core/SampleNumberIdWorker.java).        
 
 2. Register your bean in `spring.xml`.
 
