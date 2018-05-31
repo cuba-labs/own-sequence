@@ -1,7 +1,7 @@
 # Using Own Database Sequences
 
 1. Create a subclass of `NumberIdWorker` bean in the `core` module and override the `getSequenceName()` method
-to return a sequence declared by the ```@IdSequence``` annotation:
+to return a sequence declared by [the ```@IdSequence``` annotation](https://github.com/aleksey-stukalov/own-sequence/blob/master/modules/global/src/com/company/sample/annotation/IdSequence.java):
 
     ```java
     @Override
